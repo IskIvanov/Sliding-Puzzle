@@ -8,7 +8,7 @@ import '../scss/puzzle.scss';
 	//Component
 		// every time when a cell clicks the component change the state
 
-const initialState = [1, 2, 3, 4, 5, 6, 7, 0];
+const initialState = [1, 2, 3, 4, 5, 6, 7, 8, 0];
 export const emptyCell = 0;
 const rows = 3;
 
