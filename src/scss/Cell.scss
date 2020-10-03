@@ -1,0 +1,23 @@
+.cell,
+.empty-cell {
+  display: inline-flex;
+  width: 100px;
+  height: 100px;
+  background-color: rgb(29, 29, 29);
+  border: 2px solid white;
+  align-items: center;
+  justify-content: center;
+  font-size: 2rem;
+  color: white;
+  cursor: pointer;
+}
+
+.empty-cell {
+  background-color: transparent;
+  border: 2px solid transparent;
+  pointer-events: none;
+}
+
+.no-move {
+  cursor: not-allowed;
+}

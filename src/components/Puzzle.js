@@ -1,5 +1,6 @@
 import React,{ useState }  from 'react';
 import Cell from './Cell';
+import '../scss/puzzle.scss';
 	// Array with all the numbers of the puzzle
 		//chose an empty element !
 	//number of columns ?
@@ -21,8 +22,8 @@ const canMove = (index, emptyCellIndex) => {
 
 function Puzzle() {
 	// State to hold the puzzle value
-	const [puzzle, setPuzzle] = initialState
-	const emptyCell = puzzle.indexOf(emptyCell);
+	const [puzzle, setPuzzle] = useState(initialState);
+	const emptyCellIndex = puzzle.indexOf(0);
 	
 	// Function that gets triggered every time when when the user
 	// clicks a cell.
@@ -51,9 +52,15 @@ function Puzzle() {
 		<div className="puzzle">
 			{puzzle.map((cellValue, index) => {
 				return (
-					<Cell>
-
-					</Cell>
+					<div>
+						<Cell
+							key={cellValue}
+							canMove={canMove(index, emptyCellIndex)}
+							onClick={ ()=>handleMove(index) }
+							>
+							{ cellValue }
+						</Cell>
+					</div>
 				)
 			})}
 		</div>

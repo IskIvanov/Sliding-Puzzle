@@ -1,5 +1,24 @@
 import React from 'react';
+import classNames from "classnames";
+import { emptyCell } from './Puzzle';
+import '../scss/cell.scss';
 
-export default function Cell() {
-	return <h1>Cell</h1>;
-}
+const Cell = ({ children, onClick, canMove }) => {
+
+	const isEmpty = children === emptyCell;
+	
+	const className = classNames({
+	  cell: !isEmpty,
+	  "empty-cell": isEmpty,
+	  "no-move": !canMove
+	});
+	
+	return (
+	  <div className={className} onClick={onClick}>
+		{isEmpty ? "" : children}
+	  </div>
+	);
+};
+
+export default Cell;
+  
