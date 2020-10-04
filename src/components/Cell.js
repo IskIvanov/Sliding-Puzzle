@@ -6,7 +6,7 @@ import '../scss/cell.scss';
 const Cell = ({ children, onClick, canMove }) => {
 
 	const isEmpty = children === emptyCell;
-	
+	// Changing css classes based on the empty cell 
 	const className = classNames({
 	  cell: !isEmpty,
 	  "empty-cell": isEmpty,

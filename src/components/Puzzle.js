@@ -1,14 +1,13 @@
 import React,{ useState }  from 'react';
 import Cell from './Cell';
 import '../scss/puzzle.scss';
-	// Array with all the numbers of the puzzle
-		//chose an empty element !
-	//number of columns ?
 
-	//Component
-		// every time when a cell clicks the component change the state
+// TODO:
+	// Counter that shows how many moves were made
+	// When puzzle is resolved show Win Message
+	// Responsive game size
 
-const initialState = [1, 2, 3, 4, 5, 6, 7, 8, 0];
+const initialState = [1, 2, 3, 4, 5, 6, 7, 8, 0].sort( () => .5 - Math.random() );
 export const emptyCell = 0;
 const rows = 3;
 
@@ -18,13 +17,18 @@ const canMove = (index, emptyCellIndex) => {
 	  Math.abs(index - emptyCellIndex) === 1 ||
 	  Math.abs(index - emptyCellIndex) === rows
 	);
-  };
+};
 
-function Puzzle() {
-	// State to hold the puzzle value
+
+function Puzzle({value}) {
+
 	const [puzzle, setPuzzle] = useState(initialState);
 	const emptyCellIndex = puzzle.indexOf(0);
-	
+
+	// Counter counts every time when user moves a piece.
+	// How to pass this to the parrent ?
+	const [counter, setCounter] = useState(0);
+
 	// Function that gets triggered every time when when the user
 	// clicks a cell.
 
@@ -46,23 +50,34 @@ function Puzzle() {
 			return number;
 		})
 		setPuzzle(updatePuzzle);
+		setCounter(counter + 1);
+
+		console.log(value);	
 	}
 
 	return (
-		<div className="puzzle">
-			{puzzle.map((cellValue, index) => {
-				return (
-					<div>
-						<Cell
-							key={cellValue}
-							canMove={canMove(index, emptyCellIndex)}
-							onClick={ ()=>handleMove(index) }
-							>
-							{ cellValue }
-						</Cell>
-					</div>
-				)
-			})}
+		<div> 
+			<p className="flex counter"> 
+			   Counter: {counter}
+			</p>
+
+			<div className="flex puzzle">
+				{puzzle.map((cellValue, index) => {
+					return (
+						<div>
+							<Cell
+								key={cellValue}
+								canMove={canMove(index, emptyCellIndex)}
+								onClick={ ()=>handleMove(index) }
+								>
+								{ cellValue }
+							</Cell>
+						</div>
+					)
+				})}
+			</div>
+			<p className="flex shuffleButton">
+			</p>
 		</div>
 	) 
 
